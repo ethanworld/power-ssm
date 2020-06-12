@@ -1,0 +1,51 @@
+package com.power.ssm.service;
+
+import com.power.ssm.dao.UserDao;
+import com.power.ssm.model.User;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+@Service("userService")
+public class UserImpl implements UserService{
+
+    @Resource
+    UserDao userDao;
+
+    @Override
+    public User login(User recode) {
+        int userId = this.userDao.login(recode);
+        return this.userDao.selectByPrimaryKey(userId);
+    }
+
+    @Override
+    public int insert(User record) {
+        return 0;
+    }
+
+    @Override
+    public int insert(List<User> records) {
+        return 0;
+    }
+
+    @Override
+    public int deleteByPrimaryKey(Integer pk) {
+        return 0;
+    }
+
+    @Override
+    public int updateByPrimaryKey(User record) {
+        return 0;
+    }
+
+    @Override
+    public List<User> selectAll() {
+        return null;
+    }
+
+    @Override
+    public User selectByPrimaryKey(Integer pk) {
+        return null;
+    }
+}
