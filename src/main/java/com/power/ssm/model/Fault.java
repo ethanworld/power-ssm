@@ -1,6 +1,5 @@
 package com.power.ssm.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +18,10 @@ public class Fault {
     private String line;
     // 故障设备类别
     private FaultType type;
+    // 故障设备电压等级
+    private String voltage;
+    // 故障设备发生故障的部位
+    private String position;
     // 故障设备
     private Integer deviceId;
     private Device device;
@@ -29,6 +32,16 @@ public class Fault {
     private Date date;
     // 故障描述
     private String description;
+    // 备注
+    private String remark;
 
+    // 是否引起变电站中压馈线开关跳闸
+    private Integer inOpen;
+    // 变电站中压馈线开关跳闸是否重合成功
+    private Integer inClose;
+    // 是否引起变电站外线路开关跳闸
+    private Integer outOpen;
+    // 变电站外线路开关跳闸是否重合成功
+    private Integer outClose;
 
 }
