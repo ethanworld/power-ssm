@@ -16,7 +16,7 @@ public class UserImpl implements UserService{
     @Override
     public User login(User recode) {
         int userId = this.userDao.login(recode);
-        return this.userDao.selectByPrimaryKey(userId);
+        return this.userDao.select(userId);
     }
 
     @Override
@@ -30,14 +30,15 @@ public class UserImpl implements UserService{
     }
 
     @Override
-    public int deleteByPrimaryKey(Integer pk) {
+    public int delete(User record) {
         return 0;
     }
 
     @Override
-    public int updateByPrimaryKey(User record) {
+    public int update(User record) {
         return 0;
     }
+
 
     @Override
     public List<User> selectAll() {
@@ -45,7 +46,8 @@ public class UserImpl implements UserService{
     }
 
     @Override
-    public User selectByPrimaryKey(Integer pk) {
+    public User select(Integer pk) {
         return null;
     }
+
 }
