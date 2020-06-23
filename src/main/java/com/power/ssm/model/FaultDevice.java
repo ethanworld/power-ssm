@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Setter
 @Getter
-public class Device {
+public class FaultDevice {
 
     // 型号
     private String model;

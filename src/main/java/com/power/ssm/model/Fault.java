@@ -11,7 +11,7 @@ public class Fault {
 
     // 省公司、地市局、区县局
     private Integer locationId;
-    private Location location;
+    private FaultLocation location;
     // 所属变电站名称
     private String station;
     // 所属中压线路名称
@@ -24,7 +24,7 @@ public class Fault {
     private String position;
     // 故障设备
     private Integer deviceId;
-    private Device device;
+    private FaultDevice device;
     // 故障原因
     private Integer reasonId;
     private FaultReason reason;

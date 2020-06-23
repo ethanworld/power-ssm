@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class Location {
+public class FaultLocation {
     private String province;
     private String city;
     private String district;
