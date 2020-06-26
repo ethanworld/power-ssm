@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface Dao<T> {
 
+    int getId(T recode);
+
     int insert(T record);
     int insert(List<T> records);
 

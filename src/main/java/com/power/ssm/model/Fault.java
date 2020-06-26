@@ -9,6 +9,7 @@ import java.util.Date;
 @Getter
 public class Fault {
 
+    private Integer id;
     // 省公司、地市局、区县局
     private Integer locationId;
     private FaultLocation location;
@@ -17,6 +18,7 @@ public class Fault {
     // 所属中压线路名称
     private String line;
     // 故障设备类别
+    private Integer typeId;
     private FaultType type;
     // 故障设备电压等级
     private String voltage;

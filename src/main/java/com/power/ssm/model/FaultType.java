@@ -6,4 +6,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class FaultType {
+
+    private Integer id;
+    private String type;
 }

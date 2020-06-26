@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.power.ssm.dao.FaultDao">
+
+    <resultMap id="BaseResultMap" type="com.power.ssm.model.Fault">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="parentId" jdbcType="VARCHAR" property="parentId" />
+        <association property="parent" column="parent_id" select="selectByPrimaryKey"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from category;
+    </select>
+
+    <resultMap id="MostSimpleResultMap" type="com.power.ssm.model.Category">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="parentId" jdbcType="INTEGER" property="parentId" />
+    </resultMap>
+
+    <resultMap id="SimpleResultMap" type="com.power.ssm.model.Category">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="parentId" jdbcType="INTEGER" property="parentId" />
+        <collection property="sceneDataList" column="id" ofType="com.power.ssm.model.SceneData"
+                    javaType="java.util.ArrayList"  select="com.power.ssm.dao.SceneDataDao.selectListByCategoryId"/>
+        <!--        <association column="parent_id" property="parent" select="selectByPrimaryKey" />-->
+    </resultMap>
+
+    <select id="select" parameterType="java.lang.Integer" resultMap="SimpleResultMap">
+        select * from category
+        where id = #{pk, jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.power.ssm.model.Category">
+        insert into category (parentId, `title`)
+        values (#{parentId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.power.ssm.model.Category">
+        update category
+        set
+          parentId = #{parentId,jdbcType=INTEGER},
+          `title` = #{title,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer" >
+      delete from `category` where id = #{id,jdbcType=INTEGER}
+    </delete>
+</mapper>

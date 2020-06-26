@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class Raw {
+public class Row {
 
     // 省公司、地市局、区县局
     private String province;
