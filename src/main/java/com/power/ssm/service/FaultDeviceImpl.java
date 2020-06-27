@@ -49,7 +49,7 @@ public class FaultDeviceImpl implements FaultDeviceService{
     }
 
     @Override
-    public List<FaultDevice> selectAll() {
+    public List<FaultDevice> query(FaultDevice record) {
         return null;
     }
 

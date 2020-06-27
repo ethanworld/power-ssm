@@ -19,7 +19,7 @@ public class UserController implements Controller<User> {
     UserService userService;
 
     @Override
-    public List<User> getList() {
+    public List<User> query(User record) {
         return null;
     }
 

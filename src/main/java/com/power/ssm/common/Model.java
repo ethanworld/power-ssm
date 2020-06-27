@@ -22,4 +22,6 @@ public class Model {
     /** @JsonFormat(pattern = "yyyy-MM-dd HH:mm") */
     protected Date updatedAt;
 
+    protected Integer pageSize;
+    protected Integer currentPage;
 }

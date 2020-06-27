@@ -1,6 +1,7 @@
 package com.power.ssm.service;
 
 import com.power.ssm.dao.FaultLocationDao;
+import com.power.ssm.model.Fault;
 import com.power.ssm.model.FaultLocation;
 import com.power.ssm.model.FaultReason;
 import org.springframework.stereotype.Service;
@@ -49,7 +50,7 @@ public class FaultLocationImpl implements FaultLocationService{
     }
 
     @Override
-    public List<FaultLocation> selectAll() {
+    public List<FaultLocation> query(FaultLocation record) {
         return null;
     }
 

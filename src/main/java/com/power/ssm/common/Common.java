@@ -11,7 +11,7 @@ public interface Common<T> {
 
     int update(T record);
 
-    List<T> selectAll();
+    List<T> query(T record);
 
     T select(Integer pk);
 }

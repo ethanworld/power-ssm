@@ -46,7 +46,7 @@ public class UserImpl implements UserService{
 
 
     @Override
-    public List<User> selectAll() {
+    public List<User> query (User record) {
         return null;
     }
 

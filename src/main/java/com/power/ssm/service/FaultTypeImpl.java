@@ -1,6 +1,7 @@
 package com.power.ssm.service;
 
 import com.power.ssm.dao.FaultTypeDao;
+import com.power.ssm.model.FaultReason;
 import com.power.ssm.model.FaultType;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,7 @@ public class FaultTypeImpl implements FaultTypeService{
     }
 
     @Override
-    public List<FaultType> selectAll() {
+    public List<FaultType> query(FaultType record) {
         return null;
     }
 

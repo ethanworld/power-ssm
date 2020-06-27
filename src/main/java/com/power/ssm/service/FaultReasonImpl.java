@@ -2,6 +2,7 @@ package com.power.ssm.service;
 
 import com.power.ssm.dao.FaultReasonDao;
 import com.power.ssm.dao.FaultTypeDao;
+import com.power.ssm.model.FaultLocation;
 import com.power.ssm.model.FaultReason;
 import com.power.ssm.model.FaultType;
 import org.springframework.stereotype.Service;
@@ -50,7 +51,7 @@ public class FaultReasonImpl implements FaultReasonService{
     }
 
     @Override
-    public List<FaultReason> selectAll() {
+    public List<FaultReason> query(FaultReason record) {
         return null;
     }
 

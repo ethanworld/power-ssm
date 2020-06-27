@@ -39,8 +39,8 @@ public class FaultImpl implements FaultService{
     }
 
     @Override
-    public List<Fault> selectAll() {
-        return null;
+    public List<Fault> query(Fault record) {
+        return this.faultDao.query(record);
     }
 
     @Override

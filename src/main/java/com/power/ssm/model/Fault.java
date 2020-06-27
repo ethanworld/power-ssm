@@ -1,5 +1,6 @@
 package com.power.ssm.model;
 
+import com.power.ssm.common.Model;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +8,7 @@ import java.util.Date;
 
 @Setter
 @Getter
-public class Fault {
+public class Fault extends Model {
 
     private Integer id;
     // 省公司、地市局、区县局
@@ -45,4 +46,30 @@ public class Fault {
     // 备注
     private String remark;
 
+
+    @Override
+    public String toString() {
+        return "Fault{" +
+                "id=" + id +
+                ", locationId=" + locationId +
+                ", location=" + location +
+                ", station='" + station + '\'' +
+                ", line='" + line + '\'' +
+                ", typeId=" + typeId +
+                ", type=" + type +
+                ", voltage='" + voltage + '\'' +
+                ", position='" + position + '\'' +
+                ", deviceId=" + deviceId +
+                ", device=" + device +
+                ", inOpen='" + inOpen + '\'' +
+                ", inClose='" + inClose + '\'' +
+                ", outOpen='" + outOpen + '\'' +
+                ", outClose='" + outClose + '\'' +
+                ", reasonId=" + reasonId +
+                ", reason=" + reason +
+                ", date=" + date +
+                ", description='" + description + '\'' +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }

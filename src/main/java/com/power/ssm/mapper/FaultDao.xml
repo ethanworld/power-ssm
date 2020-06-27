@@ -16,8 +16,29 @@
         <result column="remark" jdbcType="VARCHAR" property="remark" />
     </resultMap>
 
-    <select id="selectAll" resultMap="BaseResultMap">
-        select * from `fault`;
+    <select id="query" resultMap="BaseResultMap" parameterType="com.power.ssm.model.Fault">
+        select * from `fault` where `id` > 0
+        <if test="deviceId != null">
+            and deviceId = #{deviceId}
+        </if>
+        <if test="typeId != null">
+            and typeId = #{typeId}
+        </if>
+        <if test="locationId != null">
+            and locationId = #{locationId}
+        </if>
+        <if test="reasonId != null">
+            and reasonId = #{reasonId}
+        </if>
+<!--        <choose>-->
+<!--            <when test="updatedAtSort == 'desc'">-->
+<!--                order by `updatedAt` desc-->
+<!--            </when>-->
+<!--            <otherwise>-->
+<!--                order by `updatedAt` asc-->
+<!--            </otherwise>-->
+<!--        </choose>-->
+        ;
     </select>
 
 

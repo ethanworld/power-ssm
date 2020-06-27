@@ -41,10 +41,12 @@ public class FaultController implements Controller<Fault> {
             JSONObject json = jsonObject.getJSONObject(i);
             HashMap<String, String> map = new HashMap<>();
             for(Map.Entry<String, Object> entry : json.entrySet()) {
-//                System.out.println(Helper.transfer(entry.getKey()) + ": " + entry.getValue());
                 map.put(Helper.transfer(entry.getKey()), String.valueOf(entry.getValue()));
             }
             Fault fault = (Fault) Helper.parseObject(map, Fault.class);
+            if (fault == null) {
+                return 0;
+            }
             FaultReason reason = (FaultReason) Helper.parseObject(map, FaultReason.class);
             FaultType type = (FaultType) Helper.parseObject(map, FaultType.class);
             FaultLocation location = (FaultLocation) Helper.parseObject(map, FaultLocation.class);
@@ -58,7 +60,6 @@ public class FaultController implements Controller<Fault> {
             id = this.faultLocationService.getId(location);
             fault.setLocationId(id == 0 ? null : id);
             faultArrayList.add(fault);
-//            this.faultService.insert(fault);
         }
         int index = 0;
         int size = faultArrayList.size();
@@ -70,9 +71,11 @@ public class FaultController implements Controller<Fault> {
     }
 
 
+    @RequestMapping(value = "", method = RequestMethod.GET)
     @Override
-    public List<Fault> getList() {
-        return null;
+    public List<Fault> query(Fault record) {
+        System.out.println(record);
+        return this.faultService.query(record);
     }
 
     @Override
