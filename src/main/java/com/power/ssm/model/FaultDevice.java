@@ -10,6 +10,7 @@ import java.util.Date;
 @Getter
 public class FaultDevice {
 
+    private Integer id;
     // 型号
     private String model;
     // 厂家

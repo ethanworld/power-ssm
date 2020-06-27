@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.power.ssm.dao.FaultLocationDao">
+
+    <resultMap id="BaseResultMap" type="com.power.ssm.model.FaultLocation">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="province" jdbcType="VARCHAR" property="province" />
+        <result column="city" jdbcType="VARCHAR" property="city" />
+        <result column="district" jdbcType="VARCHAR" property="district" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from fault_location;
+    </select>
+
+
+    <select id="getId" parameterType="com.power.ssm.model.FaultLocation" resultMap="BaseResultMap">
+        select * from `fault_location`
+        where `province` = #{province, jdbcType=VARCHAR}
+         and `city` = #{city, jdbcType=VARCHAR}
+         and `district` = #{district, jdbcType=VARCHAR}
+    </select>
+
+    <select id="select" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from fault_location
+        where id = #{pk, jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.power.ssm.model.FaultLocation" useGeneratedKeys="true" keyProperty="id">
+        insert into fault_location (`province`, `city`, `district`)
+        values (#{province,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR},#{district,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.power.ssm.model.FaultLocation">
+        update fault_location
+        set
+          parentId = #{parentId,jdbcType=INTEGER},
+          `title` = #{title,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer" >
+      delete from `fault_location` where id = #{id,jdbcType=INTEGER}
+    </delete>
+</mapper>

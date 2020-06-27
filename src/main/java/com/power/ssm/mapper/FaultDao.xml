@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.power.ssm.dao.FaultDao">
+
+    <resultMap id="BaseResultMap" type="com.power.ssm.model.Fault">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="locationId" jdbcType="INTEGER" property="locationId" />
+        <result column="typeId" jdbcType="INTEGER" property="typeId" />
+        <result column="deviceId" jdbcType="INTEGER" property="deviceId" />
+        <result column="reasonId" jdbcType="INTEGER" property="reasonId" />
+        <result column="station" jdbcType="VARCHAR" property="station" />
+        <result column="line" jdbcType="VARCHAR" property="line" />
+        <result column="voltage" jdbcType="VARCHAR" property="voltage" />
+        <result column="position" jdbcType="VARCHAR" property="position" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from `fault`;
+    </select>
+
+
+    <select id="select" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from `fault`
+        where id = #{pk, jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.power.ssm.model.Fault">
+        insert into `fault` (locationId, `typeId`, `deviceId`, `reasonId`, `station`, `line`, `voltage`,
+        `position`,`inOpen`,`inClose`,`outOpen`,`outClose`,`description`,`remark`)
+        values (
+            #{locationId,jdbcType=INTEGER},
+            #{typeId,jdbcType=INTEGER},
+            #{deviceId,jdbcType=INTEGER},
+            #{reasonId,jdbcType=INTEGER},
+            #{station,jdbcType=VARCHAR},
+            #{line,jdbcType=VARCHAR},
+            #{voltage,jdbcType=VARCHAR},
+            #{position,jdbcType=VARCHAR},
+            #{inOpen,jdbcType=VARCHAR},
+            #{inClose,jdbcType=VARCHAR},
+            #{outOpen,jdbcType=VARCHAR},
+            #{outClose,jdbcType=VARCHAR},
+            #{description,jdbcType=VARCHAR},
+            #{remark,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="insertList" parameterType="java.util.List" >
+        insert into `fault` (locationId, `typeId`, `deviceId`, `reasonId`, `station`, `line`, `voltage`,
+        `position`,`inOpen`,`inClose`,`outOpen`,`outClose`,`description`,`remark`)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+                #{item.locationId,jdbcType=INTEGER},
+                #{item.typeId,jdbcType=INTEGER},
+                #{item.deviceId,jdbcType=INTEGER},
+                #{item.reasonId,jdbcType=INTEGER},
+                #{item.station,jdbcType=VARCHAR},
+                #{item.line,jdbcType=VARCHAR},
+                #{item.voltage,jdbcType=VARCHAR},
+                #{item.position,jdbcType=VARCHAR},
+                #{item.inOpen,jdbcType=VARCHAR},
+                #{item.inClose,jdbcType=VARCHAR},
+                #{item.outOpen,jdbcType=VARCHAR},
+                #{item.outClose,jdbcType=VARCHAR},
+                #{item.description,jdbcType=VARCHAR},
+                #{item.remark,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.power.ssm.model.Fault">
+        update `fault`
+        set
+          parentId = #{parentId,jdbcType=INTEGER},
+          `title` = #{title,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer" >
+      delete from `fault` where id = #{id,jdbcType=INTEGER}
+    </delete>
+</mapper>

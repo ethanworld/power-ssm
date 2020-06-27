@@ -19,7 +19,7 @@ public class FaultTypeImpl implements FaultTypeService{
     }
 
     @Override
-    public int insert(List<FaultType> records) {
+    public int insertList(List<FaultType> records) {
         return 0;
     }
 
@@ -45,6 +45,15 @@ public class FaultTypeImpl implements FaultTypeService{
 
     @Override
     public int getId(FaultType record) {
-        return this.faultTypeDao.getId(record);
+        if (record == null) {
+            return 0;
+        }
+        List<FaultType> res = this.faultTypeDao.getId(record);
+        if (res == null || res.size() == 0) {
+            this.faultTypeDao.insert(record);
+            return record.getId();
+        } else {
+            return res.get(0).getId();
+        }
     }
 }

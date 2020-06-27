@@ -11,20 +11,24 @@ public class Helper {
     public static Object parseObject(HashMap<String, String> map, Object o) {
 
         if (o == FaultReason.class) {
+            if (map.get("reason") == null) return null;
             FaultReason reason = new FaultReason();
             reason.setReason(map.get("reason"));
             return reason;
         } else if (o == FaultType.class) {
+            if (map.get("type") == null) return null;
             FaultType type = new FaultType();
             type.setType(map.get("type"));
             return type;
         } else if (o == FaultLocation.class) {
+            if (map.get("province") == null && map.get("city") == null && map.get("district") == null) return null;
             FaultLocation location = new FaultLocation();
             location.setProvince(map.get("province"));
             location.setCity(map.get("city"));
             location.setDistrict(map.get("district"));
             return location;
         } else if (o == FaultDevice.class) {
+            if (map.get("model") == null && map.get("factory") == null) return null;
             FaultDevice device = new FaultDevice();
             device.setModel(map.get("model"));
             device.setFactory(map.get("factory"));
@@ -37,24 +41,13 @@ public class Helper {
             fault.setVoltage(map.get("voltage"));
             fault.setPosition(map.get("position"));
 //            fault.setDate(map.get("description"));
+            fault.setInClose(map.get("inClose"));
+            fault.setInOpen(map.get("inOpen"));
+            fault.setOutClose(map.get("outClose"));
+            fault.setOutOpen(map.get("outOpen"));
             fault.setDescription(map.get("description"));
-            fault.setRemark(map.get("description"));
-            fault.setInOpen(0);
-            if (map.get("inOpen").equals("是")) {
-                fault.setInOpen(1);
-            }
-            fault.setInClose(0);
-            if (map.get("inClose").equals("是")) {
-                fault.setInClose(1);
-            }
-            fault.setOutOpen(0);
-            if (map.get("outOpen").equals("是")) {
-                fault.setOutOpen(1);
-            }
-            fault.setOutClose(0);
-            if (map.get("outClose").equals("是")) {
-                fault.setOutClose(1);
-            }
+            fault.setRemark(map.get("remark"));
+
             return fault;
         }
 

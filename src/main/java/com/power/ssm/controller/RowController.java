@@ -44,7 +44,6 @@ public class RowController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public int post(@RequestBody String record) {
-        System.out.println(record);
         JSONArray jsonObject = JSONArray.parseArray(record);
         ArrayList<Fault> faultArrayList = new ArrayList<>();
         for (int i = 0; i <jsonObject.size(); i++) {
@@ -59,13 +58,23 @@ public class RowController {
             FaultType type = (FaultType) Helper.parseObject(map, FaultType.class);
             FaultLocation location = (FaultLocation) Helper.parseObject(map, FaultLocation.class);
             FaultDevice device = (FaultDevice) Helper.parseObject(map, FaultDevice.class);
-            fault.setTypeId(this.faultTypeService.getId(type));
-            fault.setDeviceId(this.faultDeviceService.getId(device));
-            fault.setReasonId(this.faultReasonService.getId(reason));
-            fault.setLocationId(this.faultLocationService.getId(location));
+            int id = this.faultTypeService.getId(type);
+            fault.setTypeId(id == 0 ? null : id);
+            id = this.faultDeviceService.getId(device);
+            fault.setDeviceId(id == 0 ? null : id);
+            id = this.faultReasonService.getId(reason);
+            fault.setReasonId(id == 0 ? null : id);
+            id = this.faultLocationService.getId(location);
+            fault.setLocationId(id == 0 ? null : id);
             faultArrayList.add(fault);
+//            this.faultService.insert(fault);
         }
-        this.faultService.insert(faultArrayList);
+        int index = 0;
+        int size = faultArrayList.size();
+        while (index < size) {
+            this.faultService.insertList(faultArrayList.subList(index, Math.min(index + 100, size)));
+            index = index + 100;
+        }
         return 0;
     }
 

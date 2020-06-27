@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 @RestController
 @EnableAutoConfiguration
-@RequestMapping("/api/users")
+@RequestMapping("/api/faultType")
 public class FaultTypeController {
 }

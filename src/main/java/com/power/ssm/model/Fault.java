@@ -27,6 +27,14 @@ public class Fault {
     // 故障设备
     private Integer deviceId;
     private FaultDevice device;
+    // 是否引起变电站中压馈线开关跳闸
+    private String inOpen;
+    // 变电站中压馈线开关跳闸是否重合成功
+    private String inClose;
+    // 是否引起变电站外线路开关跳闸
+    private String outOpen;
+    // 变电站外线路开关跳闸是否重合成功
+    private String outClose;
     // 故障原因
     private Integer reasonId;
     private FaultReason reason;
@@ -36,14 +44,5 @@ public class Fault {
     private String description;
     // 备注
     private String remark;
-
-    // 是否引起变电站中压馈线开关跳闸
-    private Integer inOpen;
-    // 变电站中压馈线开关跳闸是否重合成功
-    private Integer inClose;
-    // 是否引起变电站外线路开关跳闸
-    private Integer outOpen;
-    // 变电站外线路开关跳闸是否重合成功
-    private Integer outClose;
 
 }

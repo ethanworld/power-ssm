@@ -20,12 +20,17 @@ public class UserImpl implements UserService{
     }
 
     @Override
+    public int getId(User recode) {
+        return 0;
+    }
+
+    @Override
     public int insert(User record) {
         return 0;
     }
 
     @Override
-    public int insert(List<User> records) {
+    public int insertList(List<User> records) {
         return 0;
     }
 

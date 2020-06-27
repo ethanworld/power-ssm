@@ -1,13 +1,31 @@
 package com.power.ssm.service;
 
+import com.power.ssm.dao.FaultDeviceDao;
 import com.power.ssm.model.FaultDevice;
+import com.power.ssm.model.FaultLocation;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+@Service("faultDeviceService")
 public class FaultDeviceImpl implements FaultDeviceService{
+
+    @Resource
+    FaultDeviceDao faultDeviceDao;
+
     @Override
-    public int getId(FaultDevice recode) {
-        return 0;
+    public int getId(FaultDevice record) {
+        if (record == null) {
+            return 0;
+        }
+        List<FaultDevice> res = this.faultDeviceDao.getId(record);
+        if (res == null || res.size() == 0) {
+            this.faultDeviceDao.insert(record);
+            return record.getId();
+        } else {
+            return res.get(0).getId();
+        }
     }
 
     @Override
@@ -16,7 +34,7 @@ public class FaultDeviceImpl implements FaultDeviceService{
     }
 
     @Override
-    public int insert(List<FaultDevice> records) {
+    public int insertList(List<FaultDevice> records) {
         return 0;
     }
 
