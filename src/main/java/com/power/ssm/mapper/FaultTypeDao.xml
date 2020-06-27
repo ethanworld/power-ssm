@@ -7,10 +7,9 @@
         <result column="type" jdbcType="VARCHAR" property="type" />
     </resultMap>
 
-    <select id="selectAll" resultMap="BaseResultMap">
-        select * from category;
+    <select id="query" resultMap="BaseResultMap" parameterType="com.power.ssm.model.FaultType">
+        select * from `fault_type`;
     </select>
-
 
     <select id="getId" parameterType="com.power.ssm.model.FaultType" resultMap="BaseResultMap">
         select * from `fault_type`

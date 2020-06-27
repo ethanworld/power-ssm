@@ -50,7 +50,7 @@ public class FaultDeviceImpl implements FaultDeviceService{
 
     @Override
     public List<FaultDevice> query(FaultDevice record) {
-        return null;
+        return this.faultDeviceDao.query(record);
     }
 
     @Override

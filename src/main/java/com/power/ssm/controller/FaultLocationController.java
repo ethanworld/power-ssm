@@ -1,13 +1,51 @@
 package com.power.ssm.controller;
 
+import com.power.ssm.common.Controller;
+import com.power.ssm.dao.FaultLocationDao;
+import com.power.ssm.model.FaultDevice;
+import com.power.ssm.model.FaultLocation;
+import com.power.ssm.service.FaultLocationService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 @CrossOrigin
 @RestController
 @EnableAutoConfiguration
-@RequestMapping("/api/users")
-public class FaultLocationController {
+@RequestMapping("/api/locations")
+public class FaultLocationController implements Controller<FaultLocation> {
+
+    @Resource
+    FaultLocationService faultLocationService;
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    @Override
+    public List<FaultLocation> query(FaultLocation record) {
+        return this.faultLocationService.query(record);
+    }
+
+    @Override
+    public FaultLocation get(Integer pk) {
+        return null;
+    }
+
+    @Override
+    public int post(FaultLocation record) {
+        return 0;
+    }
+
+    @Override
+    public int put(FaultLocation record) {
+        return 0;
+    }
+
+    @Override
+    public int delete(FaultLocation record) {
+        return 0;
+    }
 }

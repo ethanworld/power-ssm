@@ -36,7 +36,7 @@ public class FaultTypeImpl implements FaultTypeService{
 
     @Override
     public List<FaultType> query(FaultType record) {
-        return null;
+        return this.faultTypeDao.query(record);
     }
 
     @Override

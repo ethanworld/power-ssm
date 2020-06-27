@@ -8,8 +8,9 @@
         <result column="factory" jdbcType="VARCHAR" property="factory" />
     </resultMap>
 
-    <select id="selectAll" resultMap="BaseResultMap">
-        select * from fault_device;
+
+    <select id="query" resultMap="BaseResultMap" parameterType="com.power.ssm.model.FaultDevice">
+        select * from `fault_device`;
     </select>
 
 

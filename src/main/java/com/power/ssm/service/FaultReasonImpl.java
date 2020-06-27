@@ -52,7 +52,7 @@ public class FaultReasonImpl implements FaultReasonService{
 
     @Override
     public List<FaultReason> query(FaultReason record) {
-        return null;
+        return this.faultReasonDao.query(record);
     }
 
     @Override

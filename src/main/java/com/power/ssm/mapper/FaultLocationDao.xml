@@ -9,9 +9,10 @@
         <result column="district" jdbcType="VARCHAR" property="district" />
     </resultMap>
 
-    <select id="selectAll" resultMap="BaseResultMap">
-        select * from fault_location;
+    <select id="query" resultMap="BaseResultMap" parameterType="com.power.ssm.model.FaultLocation">
+        select * from `fault_location`;
     </select>
+
 
 
     <select id="getId" parameterType="com.power.ssm.model.FaultLocation" resultMap="BaseResultMap">

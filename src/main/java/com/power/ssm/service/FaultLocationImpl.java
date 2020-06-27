@@ -51,7 +51,7 @@ public class FaultLocationImpl implements FaultLocationService{
 
     @Override
     public List<FaultLocation> query(FaultLocation record) {
-        return null;
+        return this.faultLocationDao.query(record);
     }
 
     @Override
