@@ -74,7 +74,6 @@ public class FaultController implements Controller<Fault> {
     @RequestMapping(value = "", method = RequestMethod.GET)
     @Override
     public List<Fault> query(Fault record) {
-        System.out.println(record);
         return this.faultService.query(record);
     }
 
