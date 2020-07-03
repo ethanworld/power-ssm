@@ -29,15 +29,18 @@
     </select>
 
     <insert id="insert" parameterType="com.power.ssm.model.FaultLocation" useGeneratedKeys="true" keyProperty="id">
-        insert into fault_location (`province`, `city`, `district`)
-        values (#{province,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR},#{district,jdbcType=VARCHAR})
+        insert into fault_location (`index`,`flag`,`province`, `city`, `district`)
+        values (#{index,jdbcType=INTEGER},#{flag,jdbcType=INTEGER},#{province,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR},#{district,jdbcType=VARCHAR})
     </insert>
 
     <update id="update" parameterType="com.power.ssm.model.FaultLocation">
         update fault_location
         set
-          parentId = #{parentId,jdbcType=INTEGER},
-          `title` = #{title,jdbcType=VARCHAR}
+          `index` = #{index,jdbcType=INTEGER},
+          `flag` = #{flag,jdbcType=INTEGER},
+          `province` = #{province,jdbcType=VARCHAR},
+          `city` = #{city,jdbcType=VARCHAR},
+          `district` = #{district,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 

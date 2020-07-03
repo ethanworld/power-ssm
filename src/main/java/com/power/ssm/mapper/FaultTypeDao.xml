@@ -22,19 +22,20 @@
     </select>
 
     <insert id="insert" parameterType="com.power.ssm.model.FaultType" useGeneratedKeys="true" keyProperty="id">
-        insert into fault_type (`type`)
-        values (#{type,jdbcType=VARCHAR})
+        insert into fault_type (`index`,`flag`,`type`)
+        values (#{index,jdbcType=INTEGER},#{flag,jdbcType=INTEGER},#{type,jdbcType=VARCHAR})
     </insert>
 
     <update id="update" parameterType="com.power.ssm.model.FaultType">
-        update category
+        update fault_type
         set
-          parentId = #{parentId,jdbcType=INTEGER},
-          `title` = #{title,jdbcType=VARCHAR}
+          `index` = #{index,jdbcType=INTEGER},
+          `flag` = #{flag,jdbcType=INTEGER},
+          `type` = #{type,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 
     <delete id="delete" parameterType="java.lang.Integer" >
-      delete from `category` where id = #{id,jdbcType=INTEGER}
+      delete from `fault_type` where id = #{id,jdbcType=INTEGER}
     </delete>
 </mapper>

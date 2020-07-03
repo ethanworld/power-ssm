@@ -28,31 +28,35 @@ public class Helper {
             FaultLocation location = new FaultLocation();
             location.setProvince(map.get("province"));
             location.setCity(map.get("city"));
-            location.setDistrict(map.get("district"));
+            // 区县局数据清洗
+            String district = map.get("district");
+            location.setDistrict(district.substring(0, 2) + "局");
             return location;
-        } else if (o == FaultDevice.class) {
-            if (map.get("model") == null && map.get("factory") == null) return null;
-            FaultDevice device = new FaultDevice();
-            device.setModel(map.get("model"));
-            device.setFactory(map.get("factory"));
-//            device.setCreatedAt(map.get("createdAt"));
-            return device;
         } else if (o == Fault.class) {
             Fault fault = new Fault();
             fault.setStation(map.get("station"));
             fault.setLine(map.get("line"));
             fault.setVoltage(map.get("voltage"));
             fault.setPosition(map.get("position"));
-//            fault.setDate(map.get("description"));
+            fault.setModel(map.get("model"));
+            fault.setFactory(map.get("factory"));
+            if (map.get("productionDate") != null) {
+                try {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+                    Date date = sdf.parse(map.get("productionDate"));
+                    fault.setProductionDate(date);
+                } catch (ParseException ignored) {
+                }
+            }
             fault.setInClose(map.get("inClose"));
             fault.setInOpen(map.get("inOpen"));
             fault.setOutClose(map.get("outClose"));
             fault.setOutOpen(map.get("outOpen"));
-            if (map.get("date") != null) {
+            if (map.get("faultDate") != null) {
                 try {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-                    Date date = sdf.parse(map.get("date"));
-                    fault.setDate(date);
+                    Date date = sdf.parse(map.get("faultDate"));
+                    fault.setFaultDate(date);
                 } catch (ParseException ignored) {
                 }
             }
@@ -95,7 +99,7 @@ public class Helper {
             case "生产厂家":
                 return "factory";
             case "生产年份":
-                return "createdAt";
+                return "productionDate";
             case "是否引起变电站中压馈线开关跳闸":
                 return "inOpen";
             case "变电站中压馈线开关跳闸是否重合成功":
@@ -107,7 +111,7 @@ public class Helper {
             case "故障原因归类":
                 return "reason";
             case "故障日期":
-                return "date";
+                return "faultDate";
             case "故障情况描述":
                 return "description";
             case "备注":

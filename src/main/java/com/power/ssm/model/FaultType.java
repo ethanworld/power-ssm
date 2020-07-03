@@ -9,5 +9,8 @@ import lombok.Setter;
 public class FaultType extends Model {
 
     private Integer id;
+    private Integer index;
+    private Integer flag;
     private String type;
+
 }

@@ -27,9 +27,12 @@ public class Fault extends Model {
     private String voltage;
     // 故障设备发生故障的部位
     private String position;
-    // 故障设备
-    private Integer deviceId;
-    private FaultDevice device;
+    // 故障设备：型号、厂家、年份
+    private String model;
+    private String factory;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date productionDate;
     // 是否引起变电站中压馈线开关跳闸
     private String inOpen;
     // 变电站中压馈线开关跳闸是否重合成功
@@ -45,36 +48,10 @@ public class Fault extends Model {
     // 故障日期
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    private Date faultDate;
     // 故障描述
     private String description;
     // 备注
     private String remark;
 
-
-    @Override
-    public String toString() {
-        return "Fault{" +
-                "id=" + id +
-                ", locationId=" + locationId +
-                ", location=" + location +
-                ", station='" + station + '\'' +
-                ", line='" + line + '\'' +
-                ", typeId=" + typeId +
-                ", type=" + type +
-                ", voltage='" + voltage + '\'' +
-                ", position='" + position + '\'' +
-                ", deviceId=" + deviceId +
-                ", device=" + device +
-                ", inOpen='" + inOpen + '\'' +
-                ", inClose='" + inClose + '\'' +
-                ", outOpen='" + outOpen + '\'' +
-                ", outClose='" + outClose + '\'' +
-                ", reasonId=" + reasonId +
-                ", reason=" + reason +
-                ", date=" + date +
-                ", description='" + description + '\'' +
-                ", remark='" + remark + '\'' +
-                '}';
-    }
 }

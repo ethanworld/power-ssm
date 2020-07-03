@@ -9,6 +9,8 @@ import lombok.Setter;
 public class FaultLocation extends Model {
 
     private Integer id;
+    private Integer index;
+    private Integer flag;
     private String province;
     private String city;
     private String district;

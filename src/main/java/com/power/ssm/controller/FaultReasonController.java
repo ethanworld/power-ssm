@@ -4,10 +4,7 @@ import com.power.ssm.common.Controller;
 import com.power.ssm.model.FaultReason;
 import com.power.ssm.service.FaultReasonService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -32,14 +29,16 @@ public class FaultReasonController implements Controller<FaultReason> {
         return null;
     }
 
+    @RequestMapping(value = "", method = RequestMethod.POST)
     @Override
-    public int post(FaultReason record) {
-        return 0;
+    public int post(@RequestBody FaultReason record) {
+        return this.faultReasonService.insert(record);
     }
 
+    @RequestMapping(value = "", method = RequestMethod.PUT)
     @Override
-    public int put(FaultReason record) {
-        return 0;
+    public int put(@RequestBody FaultReason record) {
+        return this.faultReasonService.update(record);
     }
 
     @Override

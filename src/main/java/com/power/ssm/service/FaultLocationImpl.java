@@ -31,7 +31,7 @@ public class FaultLocationImpl implements FaultLocationService{
 
     @Override
     public int insert(FaultLocation record) {
-        return 0;
+        return this.faultLocationDao.insert(record);
     }
 
     @Override
@@ -41,12 +41,12 @@ public class FaultLocationImpl implements FaultLocationService{
 
     @Override
     public int delete(FaultLocation record) {
-        return 0;
+        return this.faultLocationDao.delete(record);
     }
 
     @Override
     public int update(FaultLocation record) {
-        return 0;
+        return this.faultLocationDao.update(record);
     }
 
     @Override
@@ -56,6 +56,6 @@ public class FaultLocationImpl implements FaultLocationService{
 
     @Override
     public FaultLocation select(Integer pk) {
-        return null;
+        return this.faultLocationDao.select(pk);
     }
 }

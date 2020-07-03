@@ -22,15 +22,16 @@
     </select>
 
     <insert id="insert" parameterType="com.power.ssm.model.FaultReason" useGeneratedKeys="true" keyProperty="id">
-        insert into fault_reason (`reason`)
-        values (#{reason,jdbcType=VARCHAR})
+        insert into fault_reason (`index`,`flag`,`reason`)
+        values (#{index,jdbcType=INTEGER},#{flag,jdbcType=INTEGER},#{reason,jdbcType=VARCHAR})
     </insert>
 
     <update id="update" parameterType="com.power.ssm.model.FaultReason">
         update fault_reason
         set
-          parentId = #{parentId,jdbcType=INTEGER},
-          `title` = #{title,jdbcType=VARCHAR}
+          `index` = #{index,jdbcType=INTEGER},
+          `flag` = #{flag,jdbcType=INTEGER},
+          `reason` = #{reason,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 

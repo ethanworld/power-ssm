@@ -6,12 +6,13 @@
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="locationId" jdbcType="INTEGER" property="locationId" />
         <result column="typeId" jdbcType="INTEGER" property="typeId" />
-        <result column="deviceId" jdbcType="INTEGER" property="deviceId" />
         <result column="reasonId" jdbcType="INTEGER" property="reasonId" />
         <result column="station" jdbcType="VARCHAR" property="station" />
         <result column="line" jdbcType="VARCHAR" property="line" />
         <result column="voltage" jdbcType="VARCHAR" property="voltage" />
         <result column="position" jdbcType="VARCHAR" property="position" />
+        <result column="model" jdbcType="VARCHAR" property="model" />
+        <result column="factory" jdbcType="VARCHAR" property="factory" />
         <result column="description" jdbcType="VARCHAR" property="description" />
         <result column="remark" jdbcType="VARCHAR" property="remark" />
         <association property="location" column="locationId" select="com.power.ssm.dao.FaultLocationDao.select"/>
@@ -21,9 +22,6 @@
 
     <select id="query" resultMap="BaseResultMap" parameterType="com.power.ssm.model.Fault">
         select * from `fault` where `id` > 0
-        <if test="deviceId != null">
-            and deviceId = #{deviceId}
-        </if>
         <if test="typeId != null">
             and typeId = #{typeId}
         </if>
@@ -51,46 +49,50 @@
     </select>
 
     <insert id="insert" parameterType="com.power.ssm.model.Fault">
-        insert into `fault` (locationId, `typeId`, `deviceId`, `reasonId`, `station`, `line`, `voltage`,
-        `position`,`inOpen`,`inClose`,`outOpen`,`outClose`,`date`,`description`,`remark`)
+        insert into `fault` (locationId, `typeId`, `reasonId`, `station`, `line`, `voltage`,
+        `position`,`model`,`factory`,`productionDate`,`inOpen`,`inClose`,`outOpen`,`outClose`,`faultDate`,`description`,`remark`)
         values (
             #{locationId,jdbcType=INTEGER},
             #{typeId,jdbcType=INTEGER},
-            #{deviceId,jdbcType=INTEGER},
             #{reasonId,jdbcType=INTEGER},
             #{station,jdbcType=VARCHAR},
             #{line,jdbcType=VARCHAR},
             #{voltage,jdbcType=VARCHAR},
             #{position,jdbcType=VARCHAR},
+            #{model,jdbcType=VARCHAR},
+            #{factory,jdbcType=VARCHAR},
+            #{productionDate,jdbcType=DATE},
             #{inOpen,jdbcType=VARCHAR},
             #{inClose,jdbcType=VARCHAR},
             #{outOpen,jdbcType=VARCHAR},
             #{outClose,jdbcType=VARCHAR},
-            #{date,jdbcType=DATE},
+            #{faultDate,jdbcType=DATE},
             #{description,jdbcType=VARCHAR},
             #{remark,jdbcType=VARCHAR}
         )
     </insert>
 
     <insert id="insertList" parameterType="java.util.List" >
-        insert into `fault` (locationId, `typeId`, `deviceId`, `reasonId`, `station`, `line`, `voltage`,
-        `position`,`inOpen`,`inClose`,`outOpen`,`outClose`,`date`,`description`,`remark`)
+        insert into `fault` (locationId, `typeId`, `reasonId`, `station`, `line`, `voltage`,
+        `position`,`model`,`factory`,`productionDate`,`inOpen`,`inClose`,`outOpen`,`outClose`,`faultDate`,`description`,`remark`)
         VALUES
         <foreach collection="list" item="item" separator=",">
             (
                 #{item.locationId,jdbcType=INTEGER},
                 #{item.typeId,jdbcType=INTEGER},
-                #{item.deviceId,jdbcType=INTEGER},
                 #{item.reasonId,jdbcType=INTEGER},
                 #{item.station,jdbcType=VARCHAR},
                 #{item.line,jdbcType=VARCHAR},
                 #{item.voltage,jdbcType=VARCHAR},
                 #{item.position,jdbcType=VARCHAR},
+                #{item.model,jdbcType=VARCHAR},
+                #{item.factory,jdbcType=VARCHAR},
+                #{item.productionDate,jdbcType=DATE},
                 #{item.inOpen,jdbcType=VARCHAR},
                 #{item.inClose,jdbcType=VARCHAR},
                 #{item.outOpen,jdbcType=VARCHAR},
                 #{item.outClose,jdbcType=VARCHAR},
-                #{item.date,jdbcType=DATE},
+                #{item.faultDate,jdbcType=DATE},
                 #{item.description,jdbcType=VARCHAR},
                 #{item.remark,jdbcType=VARCHAR}
             )

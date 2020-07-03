@@ -16,7 +16,7 @@ public class FaultTypeImpl implements FaultTypeService{
 
     @Override
     public int insert(FaultType record) {
-        return 0;
+        return this.faultTypeDao.insert(record);
     }
 
     @Override
@@ -26,12 +26,12 @@ public class FaultTypeImpl implements FaultTypeService{
 
     @Override
     public int delete(FaultType record) {
-        return 0;
+        return this.faultTypeDao.delete(record);
     }
 
     @Override
     public int update(FaultType record) {
-        return 0;
+        return this.faultTypeDao.update(record);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class FaultTypeImpl implements FaultTypeService{
 
     @Override
     public FaultType select(Integer pk) {
-        return null;
+        return this.faultTypeDao.select(pk);
     }
 
     @Override

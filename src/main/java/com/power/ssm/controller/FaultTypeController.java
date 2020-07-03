@@ -4,10 +4,7 @@ import com.power.ssm.common.Controller;
 import com.power.ssm.model.FaultType;
 import com.power.ssm.service.FaultTypeService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -32,14 +29,16 @@ public class FaultTypeController implements Controller<FaultType> {
         return null;
     }
 
+    @RequestMapping(value = "", method = RequestMethod.POST)
     @Override
-    public int post(FaultType record) {
-        return 0;
+    public int post(@RequestBody FaultType record) {
+        return this.faultTypeService.insert(record);
     }
 
+    @RequestMapping(value = "", method = RequestMethod.PUT)
     @Override
-    public int put(FaultType record) {
-        return 0;
+    public int put(@RequestBody FaultType record) {
+        return this.faultTypeService.update(record);
     }
 
     @Override

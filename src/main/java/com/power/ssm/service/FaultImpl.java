@@ -1,5 +1,6 @@
 package com.power.ssm.service;
 
+import com.power.ssm.common.Merge;
 import com.power.ssm.dao.FaultDao;
 import com.power.ssm.model.Fault;
 import org.springframework.stereotype.Service;
@@ -46,5 +47,35 @@ public class FaultImpl implements FaultService{
     @Override
     public Fault select(Integer pk) {
         return null;
+    }
+
+    @Override
+    public int merge(Merge merge) {
+        Fault fault = new Fault();
+        List<Fault> faultList;
+        switch (merge.getType()) {
+            case "location":
+                fault.setLocationId(merge.getStart());
+                faultList = this.faultDao.query(fault);
+                for (Fault value : faultList) {
+                    value.setLocationId(merge.getEnd());
+                }
+                break;
+            case "type":
+                fault.setTypeId(merge.getStart());
+                faultList = this.faultDao.query(fault);
+                for (Fault value : faultList) {
+                    value.setTypeId(merge.getEnd());
+                }
+                break;
+            case "reason":
+                fault.setReasonId(merge.getStart());
+                faultList = this.faultDao.query(fault);
+                for (Fault value : faultList) {
+                    value.setReasonId(merge.getEnd());
+                }
+                break;
+        }
+        return 1;
     }
 }

@@ -32,7 +32,7 @@ public class FaultReasonImpl implements FaultReasonService{
 
     @Override
     public int insert(FaultReason record) {
-        return 0;
+        return this.faultReasonDao.insert(record);
     }
 
     @Override
@@ -42,12 +42,12 @@ public class FaultReasonImpl implements FaultReasonService{
 
     @Override
     public int delete(FaultReason record) {
-        return 0;
+        return this.faultReasonDao.delete(record);
     }
 
     @Override
     public int update(FaultReason record) {
-        return 0;
+        return this.faultReasonDao.update(record);
     }
 
     @Override
@@ -57,6 +57,6 @@ public class FaultReasonImpl implements FaultReasonService{
 
     @Override
     public FaultReason select(Integer pk) {
-        return null;
+        return this.faultReasonDao.select(pk);
     }
 }

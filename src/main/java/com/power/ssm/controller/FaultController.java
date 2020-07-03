@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.power.ssm.common.Controller;
 import com.power.ssm.common.Helper;
+import com.power.ssm.common.Merge;
 import com.power.ssm.model.*;
 import com.power.ssm.service.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -25,8 +26,6 @@ public class FaultController implements Controller<Fault> {
     FaultService faultService;
     @Resource
     FaultTypeService faultTypeService;
-    @Resource
-    FaultDeviceService faultDeviceService;
     @Resource
     FaultLocationService faultLocationService;
     @Resource
@@ -50,11 +49,8 @@ public class FaultController implements Controller<Fault> {
             FaultReason reason = (FaultReason) Helper.parseObject(map, FaultReason.class);
             FaultType type = (FaultType) Helper.parseObject(map, FaultType.class);
             FaultLocation location = (FaultLocation) Helper.parseObject(map, FaultLocation.class);
-            FaultDevice device = (FaultDevice) Helper.parseObject(map, FaultDevice.class);
             int id = this.faultTypeService.getId(type);
             fault.setTypeId(id == 0 ? null : id);
-            id = this.faultDeviceService.getId(device);
-            fault.setDeviceId(id == 0 ? null : id);
             id = this.faultReasonService.getId(reason);
             fault.setReasonId(id == 0 ? null : id);
             id = this.faultLocationService.getId(location);
@@ -68,6 +64,26 @@ public class FaultController implements Controller<Fault> {
             index = index + 100;
         }
         return 0;
+    }
+
+    @RequestMapping(value = "/merge", method = RequestMethod.POST)
+    public int merge(@RequestBody Merge merge) {
+        if (merge.getType() == null) return 0;
+        switch (merge.getType()) {
+            case "location":
+                this.faultService.merge(merge);
+                this.faultLocationService.delete(this.faultLocationService.select(merge.getStart()));
+                break;
+            case "type":
+                this.faultService.merge(merge);
+                this.faultTypeService.delete(this.faultTypeService.select(merge.getStart()));
+                break;
+            case "reason":
+                this.faultService.merge(merge);
+                this.faultReasonService.delete(this.faultReasonService.select(merge.getStart()));
+                break;
+        }
+        return 1;
     }
 
 
