@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserDao extends Dao<User> {
 
-    int login(User recode);
+    User login(User recode);
 }

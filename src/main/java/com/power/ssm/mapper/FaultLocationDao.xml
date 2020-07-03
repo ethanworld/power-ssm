@@ -14,12 +14,13 @@
     </select>
 
 
-
     <select id="getId" parameterType="com.power.ssm.model.FaultLocation" resultMap="BaseResultMap">
-        select * from `fault_location`
-        where `province` = #{province, jdbcType=VARCHAR}
+        select * from `fault_location` where `district` = #{district, jdbcType=VARCHAR};
+<!--
+         where `province` = #{province, jdbcType=VARCHAR}
          and `city` = #{city, jdbcType=VARCHAR}
          and `district` = #{district, jdbcType=VARCHAR}
+-->
     </select>
 
     <select id="select" parameterType="java.lang.Integer" resultMap="BaseResultMap">

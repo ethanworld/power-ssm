@@ -1,8 +1,10 @@
 package com.power.ssm.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.power.ssm.common.Model;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -39,7 +41,10 @@ public class Fault extends Model {
     // 故障原因
     private Integer reasonId;
     private FaultReason reason;
+
     // 故障日期
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
     // 故障描述
     private String description;

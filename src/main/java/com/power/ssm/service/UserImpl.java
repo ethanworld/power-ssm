@@ -15,8 +15,7 @@ public class UserImpl implements UserService{
 
     @Override
     public User login(User recode) {
-        int userId = this.userDao.login(recode);
-        return this.userDao.select(userId);
+        return this.userDao.login(recode);
     }
 
     @Override

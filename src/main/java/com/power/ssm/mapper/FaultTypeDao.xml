@@ -17,7 +17,7 @@
     </select>
 
     <select id="select" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select * from category
+        select * from `fault_type`
         where id = #{pk, jdbcType=INTEGER}
     </select>
 

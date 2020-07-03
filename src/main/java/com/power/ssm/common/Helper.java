@@ -1,8 +1,11 @@
 package com.power.ssm.common;
 
-import com.alibaba.fastjson.JSONObject;
 import com.power.ssm.model.*;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Helper {
@@ -45,6 +48,14 @@ public class Helper {
             fault.setInOpen(map.get("inOpen"));
             fault.setOutClose(map.get("outClose"));
             fault.setOutOpen(map.get("outOpen"));
+            if (map.get("date") != null) {
+                try {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+                    Date date = sdf.parse(map.get("date"));
+                    fault.setDate(date);
+                } catch (ParseException ignored) {
+                }
+            }
             fault.setDescription(map.get("description"));
             fault.setRemark(map.get("remark"));
 

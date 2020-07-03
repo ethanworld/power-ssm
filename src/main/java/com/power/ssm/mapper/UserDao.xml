@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.power.ssm.dao.FaultDao">
+<mapper namespace="com.power.ssm.dao.UserDao">
 
-    <resultMap id="BaseResultMap" type="com.power.ssm.model.Fault">
+    <resultMap id="BaseResultMap" type="com.power.ssm.model.User">
         <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="locationId" jdbcType="INTEGER" property="locationId" />
-        <result column="typeId" jdbcType="INTEGER" property="typeId" />
-        <result column="deviceId" jdbcType="INTEGER" property="deviceId" />
-        <result column="reasonId" jdbcType="INTEGER" property="reasonId" />
-        <result column="station" jdbcType="VARCHAR" property="station" />
-        <result column="line" jdbcType="VARCHAR" property="line" />
-        <result column="voltage" jdbcType="VARCHAR" property="voltage" />
-        <result column="position" jdbcType="VARCHAR" property="position" />
-        <result column="description" jdbcType="VARCHAR" property="description" />
-        <result column="remark" jdbcType="VARCHAR" property="remark" />
-        <association property="location" column="locationId" select="com.power.ssm.dao.FaultLocationDao.select"/>
-        <association property="reason" column="reasonId" select="com.power.ssm.dao.FaultReasonDao.select"/>
-        <association property="type" column="typeId" select="com.power.ssm.dao.FaultTypeDao.select"/>
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
     </resultMap>
 
-    <select id="query" resultMap="BaseResultMap" parameterType="com.power.ssm.model.Fault">
+    <select id="query" resultMap="BaseResultMap" parameterType="com.power.ssm.model.User">
         select * from `fault` where `id` > 0
         <if test="deviceId != null">
             and deviceId = #{deviceId}
@@ -45,14 +34,19 @@
     </select>
 
 
+    <select id="login" parameterType="com.power.ssm.model.User" resultMap="BaseResultMap">
+        select * from `user`
+        where username = #{username, jdbcType=VARCHAR} and password = #{password, jdbcType=VARCHAR} limit 1;
+    </select>
+
     <select id="select" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select * from `fault`
         where id = #{pk, jdbcType=INTEGER}
     </select>
 
-    <insert id="insert" parameterType="com.power.ssm.model.Fault">
+    <insert id="insert" parameterType="com.power.ssm.model.User">
         insert into `fault` (locationId, `typeId`, `deviceId`, `reasonId`, `station`, `line`, `voltage`,
-        `position`,`inOpen`,`inClose`,`outOpen`,`outClose`,`date`,`description`,`remark`)
+        `position`,`inOpen`,`inClose`,`outOpen`,`outClose`,`description`,`remark`)
         values (
             #{locationId,jdbcType=INTEGER},
             #{typeId,jdbcType=INTEGER},
@@ -66,7 +60,6 @@
             #{inClose,jdbcType=VARCHAR},
             #{outOpen,jdbcType=VARCHAR},
             #{outClose,jdbcType=VARCHAR},
-            #{date,jdbcType=DATE},
             #{description,jdbcType=VARCHAR},
             #{remark,jdbcType=VARCHAR}
         )
@@ -74,7 +67,7 @@
 
     <insert id="insertList" parameterType="java.util.List" >
         insert into `fault` (locationId, `typeId`, `deviceId`, `reasonId`, `station`, `line`, `voltage`,
-        `position`,`inOpen`,`inClose`,`outOpen`,`outClose`,`date`,`description`,`remark`)
+        `position`,`inOpen`,`inClose`,`outOpen`,`outClose`,`description`,`remark`)
         VALUES
         <foreach collection="list" item="item" separator=",">
             (
@@ -90,14 +83,13 @@
                 #{item.inClose,jdbcType=VARCHAR},
                 #{item.outOpen,jdbcType=VARCHAR},
                 #{item.outClose,jdbcType=VARCHAR},
-                #{item.date,jdbcType=DATE},
                 #{item.description,jdbcType=VARCHAR},
                 #{item.remark,jdbcType=VARCHAR}
             )
         </foreach>
     </insert>
 
-    <update id="update" parameterType="com.power.ssm.model.Fault">
+    <update id="update" parameterType="com.power.ssm.model.User">
         update `fault`
         set
           parentId = #{parentId,jdbcType=INTEGER},
