@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Model {
+public class Model extends Query{
 
     protected Integer id;
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -21,7 +21,4 @@ public class Model {
     @JsonFormat(pattern = "yyyy-MM-dd")
     /** @JsonFormat(pattern = "yyyy-MM-dd HH:mm") */
     protected Date updatedAt;
-
-    protected Integer pageSize;
-    protected Integer currentPage;
 }

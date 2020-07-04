@@ -32,7 +32,9 @@ public class FaultLocationImpl implements FaultLocationService{
 
     @Override
     public Result<FaultLocation> query(FaultLocation record) {
-        return null;
+        Result<FaultLocation> result = new Result<>();
+        result.setData(this.faultLocationDao.query(record));
+        return result;
     }
 
     @Override

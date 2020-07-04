@@ -53,8 +53,9 @@ public class FaultReasonImpl implements FaultReasonService{
 
     @Override
     public Result<FaultReason> query(FaultReason record) {
-        return null;
-//        return this.faultReasonDao.query(record);
+        Result<FaultReason> result = new Result<>();
+        result.setData(this.faultReasonDao.query(record));
+        return result;
     }
 
     @Override

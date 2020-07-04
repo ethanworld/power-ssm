@@ -31,7 +31,10 @@
         <if test="reasonId != null">
             and reasonId = #{reasonId}
         </if>
-        limit (#{currentPage} - 1) * pageSize, pageSize;
+        <if test="pageFlag != null and pageFlag > 0">
+            limit #{start}, #{pageSize}
+        </if>
+        ;
         <!--        <choose>-->
 <!--            <when test="updatedAtSort == 'desc'">-->
 <!--                order by `updatedAt` desc-->
