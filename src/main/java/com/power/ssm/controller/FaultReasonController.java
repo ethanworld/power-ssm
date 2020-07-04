@@ -1,6 +1,7 @@
 package com.power.ssm.controller;
 
 import com.power.ssm.common.Controller;
+import com.power.ssm.common.Result;
 import com.power.ssm.model.FaultReason;
 import com.power.ssm.service.FaultReasonService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -20,7 +21,7 @@ public class FaultReasonController implements Controller<FaultReason> {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     @Override
-    public List<FaultReason> query(FaultReason record) {
+    public Result<FaultReason> query(FaultReason record) {
         return this.faultReasonService.query(record);
     }
 

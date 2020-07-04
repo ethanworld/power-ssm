@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.power.ssm.common.Controller;
 import com.power.ssm.common.Helper;
 import com.power.ssm.common.Merge;
+import com.power.ssm.common.Result;
 import com.power.ssm.model.*;
 import com.power.ssm.service.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -89,7 +90,7 @@ public class FaultController implements Controller<Fault> {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     @Override
-    public List<Fault> query(Fault record) {
+    public Result<Fault> query(Fault record) {
         return this.faultService.query(record);
     }
 

@@ -1,5 +1,6 @@
 package com.power.ssm.service;
 
+import com.power.ssm.common.Result;
 import com.power.ssm.dao.UserDao;
 import com.power.ssm.model.User;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,7 @@ public class UserImpl implements UserService{
 
 
     @Override
-    public List<User> query (User record) {
+    public Result<User> query (User record) {
         return null;
     }
 

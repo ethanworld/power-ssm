@@ -1,5 +1,6 @@
 package com.power.ssm.service;
 
+import com.power.ssm.common.Result;
 import com.power.ssm.dao.FaultLocationDao;
 import com.power.ssm.model.Fault;
 import com.power.ssm.model.FaultLocation;
@@ -30,6 +31,11 @@ public class FaultLocationImpl implements FaultLocationService{
     }
 
     @Override
+    public Result<FaultLocation> query(FaultLocation record) {
+        return null;
+    }
+
+    @Override
     public int insert(FaultLocation record) {
         return this.faultLocationDao.insert(record);
     }
@@ -49,10 +55,6 @@ public class FaultLocationImpl implements FaultLocationService{
         return this.faultLocationDao.update(record);
     }
 
-    @Override
-    public List<FaultLocation> query(FaultLocation record) {
-        return this.faultLocationDao.query(record);
-    }
 
     @Override
     public FaultLocation select(Integer pk) {

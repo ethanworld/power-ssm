@@ -31,7 +31,8 @@
         <if test="reasonId != null">
             and reasonId = #{reasonId}
         </if>
-<!--        <choose>-->
+        limit (#{currentPage} - 1) * pageSize, pageSize;
+        <!--        <choose>-->
 <!--            <when test="updatedAtSort == 'desc'">-->
 <!--                order by `updatedAt` desc-->
 <!--            </when>-->
@@ -40,6 +41,20 @@
 <!--            </otherwise>-->
 <!--        </choose>-->
         ;
+    </select>
+
+
+    <select id="count" parameterType="com.power.ssm.model.Fault" resultType="java.lang.Integer">
+        select count(*) from `fault` where `id` > 0
+        <if test="typeId != null">
+            and typeId = #{typeId}
+        </if>
+        <if test="locationId != null">
+            and locationId = #{locationId}
+        </if>
+        <if test="reasonId != null">
+            and reasonId = #{reasonId}
+        </if>
     </select>
 
 

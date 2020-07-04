@@ -1,5 +1,6 @@
 package com.power.ssm.service;
 
+import com.power.ssm.common.Result;
 import com.power.ssm.dao.FaultReasonDao;
 import com.power.ssm.dao.FaultTypeDao;
 import com.power.ssm.model.FaultLocation;
@@ -51,8 +52,9 @@ public class FaultReasonImpl implements FaultReasonService{
     }
 
     @Override
-    public List<FaultReason> query(FaultReason record) {
-        return this.faultReasonDao.query(record);
+    public Result<FaultReason> query(FaultReason record) {
+        return null;
+//        return this.faultReasonDao.query(record);
     }
 
     @Override

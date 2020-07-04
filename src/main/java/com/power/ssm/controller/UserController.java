@@ -1,6 +1,7 @@
 package com.power.ssm.controller;
 
 import com.power.ssm.common.Controller;
+import com.power.ssm.common.Result;
 import com.power.ssm.model.User;
 import com.power.ssm.service.UserService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -19,7 +20,7 @@ public class UserController implements Controller<User> {
     UserService userService;
 
     @Override
-    public List<User> query(User record) {
+    public Result<User> query(User record) {
         return null;
     }
 

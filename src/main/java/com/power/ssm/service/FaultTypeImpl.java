@@ -1,5 +1,6 @@
 package com.power.ssm.service;
 
+import com.power.ssm.common.Result;
 import com.power.ssm.dao.FaultTypeDao;
 import com.power.ssm.model.FaultReason;
 import com.power.ssm.model.FaultType;
@@ -35,8 +36,9 @@ public class FaultTypeImpl implements FaultTypeService{
     }
 
     @Override
-    public List<FaultType> query(FaultType record) {
-        return this.faultTypeDao.query(record);
+    public Result<FaultType> query(FaultType record) {
+        return null;
+//        return this.faultTypeDao.query(record);
     }
 
     @Override

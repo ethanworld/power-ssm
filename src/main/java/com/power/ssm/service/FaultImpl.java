@@ -1,6 +1,7 @@
 package com.power.ssm.service;
 
 import com.power.ssm.common.Merge;
+import com.power.ssm.common.Result;
 import com.power.ssm.dao.FaultDao;
 import com.power.ssm.model.Fault;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,11 @@ public class FaultImpl implements FaultService{
     @Override
     public int getId(Fault recode) {
         return 0;
+    }
+
+    @Override
+    public Result<Fault> query(Fault record) {
+        return null;
     }
 
     @Override
@@ -37,11 +43,6 @@ public class FaultImpl implements FaultService{
     @Override
     public int update(Fault record) {
         return 0;
-    }
-
-    @Override
-    public List<Fault> query(Fault record) {
-        return this.faultDao.query(record);
     }
 
     @Override

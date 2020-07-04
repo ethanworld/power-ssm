@@ -1,6 +1,7 @@
 package com.power.ssm.controller;
 
 import com.power.ssm.common.Controller;
+import com.power.ssm.common.Result;
 import com.power.ssm.model.FaultLocation;
 import com.power.ssm.service.FaultLocationService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -20,7 +21,7 @@ public class FaultLocationController implements Controller<FaultLocation> {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     @Override
-    public List<FaultLocation> query(FaultLocation record) {
+    public Result<FaultLocation> query(FaultLocation record) {
         return this.faultLocationService.query(record);
     }
 
