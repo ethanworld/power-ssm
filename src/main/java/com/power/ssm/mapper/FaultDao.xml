@@ -126,6 +126,8 @@
     </update>
 
     <delete id="delete" parameterType="java.lang.Integer" >
-      delete from `fault` where id = #{id,jdbcType=INTEGER}
+        SET foreign_key_checks = 0;
+        delete from `fault` where id = #{id,jdbcType=INTEGER};
+        SET foreign_key_checks = 1;
     </delete>
 </mapper>

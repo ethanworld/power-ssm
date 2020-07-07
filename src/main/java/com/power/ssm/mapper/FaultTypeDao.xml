@@ -8,7 +8,7 @@
     </resultMap>
 
     <select id="query" resultMap="BaseResultMap" parameterType="com.power.ssm.model.FaultType">
-        select * from `fault_type`;
+        select * from `fault_type` where `flag` &lt; 2;
     </select>
 
     <select id="getId" parameterType="com.power.ssm.model.FaultType" resultMap="BaseResultMap">
@@ -36,6 +36,8 @@
     </update>
 
     <delete id="delete" parameterType="java.lang.Integer" >
-      delete from `fault_type` where id = #{id,jdbcType=INTEGER}
+        SET foreign_key_checks = 0;
+        delete from `fault_type` where id = #{id,jdbcType=INTEGER};
+        SET foreign_key_checks = 1;
     </delete>
 </mapper>
