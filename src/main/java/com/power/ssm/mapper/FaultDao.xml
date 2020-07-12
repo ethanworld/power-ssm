@@ -120,8 +120,23 @@
     <update id="update" parameterType="com.power.ssm.model.Fault">
         update `fault`
         set
-          parentId = #{parentId,jdbcType=INTEGER},
-          `title` = #{title,jdbcType=VARCHAR}
+            locationId = #{locationId,jdbcType=INTEGER},
+            typeId = #{typeId,jdbcType=INTEGER},
+            reasonId = #{reasonId,jdbcType=INTEGER},
+            station = #{station,jdbcType=VARCHAR},
+            line = #{line,jdbcType=VARCHAR},
+            voltage = #{voltage,jdbcType=VARCHAR},
+            `position` = #{position,jdbcType=VARCHAR},
+            model = #{model,jdbcType=VARCHAR},
+            factory = #{factory,jdbcType=VARCHAR},
+            productionDate = #{productionDate,jdbcType=DATE},
+            inOpen = #{inOpen,jdbcType=VARCHAR},
+            inClose = #{inClose,jdbcType=VARCHAR},
+            outOpen = #{outOpen,jdbcType=VARCHAR},
+            outClose = #{outClose,jdbcType=VARCHAR},
+            faultDate = #{faultDate,jdbcType=DATE},
+            description = #{description,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 

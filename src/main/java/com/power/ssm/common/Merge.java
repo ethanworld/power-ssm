@@ -11,4 +11,12 @@ public class Merge {
     private Integer start;
     private Integer end;
 
+    @Override
+    public String toString() {
+        return "Merge{" +
+                "type='" + type + '\'' +
+                ", start=" + start +
+                ", end=" + end +
+                '}';
+    }
 }

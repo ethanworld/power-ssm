@@ -67,6 +67,17 @@ public class FaultController implements Controller<Fault> {
         return 0;
     }
 
+    @RequestMapping(value = "/merge/list", method = RequestMethod.POST)
+    public int merge(@RequestBody List<Merge> mergeList) {
+
+        for (Merge merge : mergeList) {
+            System.out.println(merge);
+//            merge(merge);
+        }
+
+        return 0;
+    }
+
     @RequestMapping(value = "/merge", method = RequestMethod.POST)
     public int merge(@RequestBody Merge merge) {
         if (merge.getType() == null) return 0;

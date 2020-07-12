@@ -2,7 +2,6 @@ package com.power.ssm.common;
 
 import com.power.ssm.model.*;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,9 +27,7 @@ public class Helper {
             FaultLocation location = new FaultLocation();
             location.setProvince(map.get("province"));
             location.setCity(map.get("city"));
-            // 区县局数据清洗
-            String district = map.get("district");
-            location.setDistrict(district.substring(0, 2) + "局");
+            location.setDistrict(map.get("district"));
             return location;
         } else if (o == Fault.class) {
             Fault fault = new Fault();

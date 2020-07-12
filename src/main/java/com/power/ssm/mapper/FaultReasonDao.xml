@@ -8,7 +8,7 @@
     </resultMap>
 
     <select id="query" resultMap="BaseResultMap" parameterType="com.power.ssm.model.FaultReason">
-        select * from `fault_reason` where `flag` &lt; 2;
+        select * from `fault_reason` where (`flag` is NULL) or (`flag` &lt; 2);
     </select>
 
     <select id="getId" parameterType="com.power.ssm.model.FaultReason" resultMap="BaseResultMap">

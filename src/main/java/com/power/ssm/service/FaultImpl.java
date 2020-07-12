@@ -69,6 +69,7 @@ public class FaultImpl implements FaultService{
                 faultList = this.faultDao.query(fault);
                 for (Fault value : faultList) {
                     value.setLocationId(merge.getEnd());
+                    this.faultDao.update(value);
                 }
                 break;
             case "type":
@@ -76,6 +77,7 @@ public class FaultImpl implements FaultService{
                 faultList = this.faultDao.query(fault);
                 for (Fault value : faultList) {
                     value.setTypeId(merge.getEnd());
+                    this.faultDao.update(value);
                 }
                 break;
             case "reason":
@@ -83,6 +85,7 @@ public class FaultImpl implements FaultService{
                 faultList = this.faultDao.query(fault);
                 for (Fault value : faultList) {
                     value.setReasonId(merge.getEnd());
+                    this.faultDao.update(value);
                 }
                 break;
         }
