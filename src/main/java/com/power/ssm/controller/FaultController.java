@@ -31,7 +31,18 @@ public class FaultController implements Controller<Fault> {
     FaultLocationService faultLocationService;
     @Resource
     FaultReasonService faultReasonService;
+    @Resource
+    FaultBlockService faultBlockService;
 
+    @RequestMapping(value = "/feed", method = RequestMethod.GET)
+    public List<Fault> starQuery(StarQuery query) {
+        return this.faultService.starQuery(query);
+    }
+
+    @RequestMapping(value = "/block", method = RequestMethod.GET)
+    public FaultBlock block() {
+        return this.faultBlockService.select(0);
+    }
 
     @RequestMapping(value = "/batch", method = RequestMethod.POST)
     public int batch(@RequestBody String record) {

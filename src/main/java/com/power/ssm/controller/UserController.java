@@ -19,9 +19,10 @@ public class UserController implements Controller<User> {
     @Resource
     UserService userService;
 
+    @RequestMapping(value = "", method = RequestMethod.GET)
     @Override
     public Result<User> query(User record) {
-        return null;
+        return this.userService.query(record);
     }
 
     @RequestMapping(value = "/{pk}", method = RequestMethod.GET)

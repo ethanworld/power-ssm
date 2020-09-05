@@ -9,28 +9,7 @@
     </resultMap>
 
     <select id="query" resultMap="BaseResultMap" parameterType="com.power.ssm.model.User">
-        select * from `fault` where `id` > 0
-        <if test="deviceId != null">
-            and deviceId = #{deviceId}
-        </if>
-        <if test="typeId != null">
-            and typeId = #{typeId}
-        </if>
-        <if test="locationId != null">
-            and locationId = #{locationId}
-        </if>
-        <if test="reasonId != null">
-            and reasonId = #{reasonId}
-        </if>
-<!--        <choose>-->
-<!--            <when test="updatedAtSort == 'desc'">-->
-<!--                order by `updatedAt` desc-->
-<!--            </when>-->
-<!--            <otherwise>-->
-<!--                order by `updatedAt` asc-->
-<!--            </otherwise>-->
-<!--        </choose>-->
-        ;
+        select * from `user`;
     </select>
 
 
@@ -45,59 +24,22 @@
     </select>
 
     <insert id="insert" parameterType="com.power.ssm.model.User">
-        insert into `fault` (locationId, `typeId`, `deviceId`, `reasonId`, `station`, `line`, `voltage`,
-        `position`,`inOpen`,`inClose`,`outOpen`,`outClose`,`description`,`remark`)
+        insert into `user` (username, `password`)
         values (
-            #{locationId,jdbcType=INTEGER},
-            #{typeId,jdbcType=INTEGER},
-            #{deviceId,jdbcType=INTEGER},
-            #{reasonId,jdbcType=INTEGER},
-            #{station,jdbcType=VARCHAR},
-            #{line,jdbcType=VARCHAR},
-            #{voltage,jdbcType=VARCHAR},
-            #{position,jdbcType=VARCHAR},
-            #{inOpen,jdbcType=VARCHAR},
-            #{inClose,jdbcType=VARCHAR},
-            #{outOpen,jdbcType=VARCHAR},
-            #{outClose,jdbcType=VARCHAR},
-            #{description,jdbcType=VARCHAR},
-            #{remark,jdbcType=VARCHAR}
+            #{username,jdbcType=VARCHAR},
+            #{password,jdbcType=VARCHAR}
         )
     </insert>
 
-    <insert id="insertList" parameterType="java.util.List" >
-        insert into `fault` (locationId, `typeId`, `deviceId`, `reasonId`, `station`, `line`, `voltage`,
-        `position`,`inOpen`,`inClose`,`outOpen`,`outClose`,`description`,`remark`)
-        VALUES
-        <foreach collection="list" item="item" separator=",">
-            (
-                #{item.locationId,jdbcType=INTEGER},
-                #{item.typeId,jdbcType=INTEGER},
-                #{item.deviceId,jdbcType=INTEGER},
-                #{item.reasonId,jdbcType=INTEGER},
-                #{item.station,jdbcType=VARCHAR},
-                #{item.line,jdbcType=VARCHAR},
-                #{item.voltage,jdbcType=VARCHAR},
-                #{item.position,jdbcType=VARCHAR},
-                #{item.inOpen,jdbcType=VARCHAR},
-                #{item.inClose,jdbcType=VARCHAR},
-                #{item.outOpen,jdbcType=VARCHAR},
-                #{item.outClose,jdbcType=VARCHAR},
-                #{item.description,jdbcType=VARCHAR},
-                #{item.remark,jdbcType=VARCHAR}
-            )
-        </foreach>
-    </insert>
-
     <update id="update" parameterType="com.power.ssm.model.User">
-        update `fault`
+        update `user`
         set
-          parentId = #{parentId,jdbcType=INTEGER},
-          `title` = #{title,jdbcType=VARCHAR}
+          username = #{username,jdbcType=VARCHAR},
+          `password` = #{password,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 
     <delete id="delete" parameterType="java.lang.Integer" >
-      delete from `fault` where id = #{id,jdbcType=INTEGER}
+      delete from `user` where id = #{id,jdbcType=INTEGER}
     </delete>
 </mapper>

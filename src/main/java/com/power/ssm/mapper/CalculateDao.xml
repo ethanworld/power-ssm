@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.power.ssm.dao.CalculateDao">
+
+    <resultMap id="BaseResultMap" type="com.power.ssm.model.Calculate">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="value" jdbcType="DOUBLE" property="value" />
+    </resultMap>
+
+    <select id="query" resultMap="BaseResultMap" parameterType="com.power.ssm.model.Calculate">
+        select * from ${tableName} order by id asc ;
+    </select>
+
+    <select id="getId" parameterType="com.power.ssm.model.Calculate" resultMap="BaseResultMap">
+        select * from `fault_type`
+        where `type` = #{type, jdbcType=VARCHAR}
+    </select>
+
+    <select id="select" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from `fault_type`
+        where id = #{pk, jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.power.ssm.model.Calculate" useGeneratedKeys="true" keyProperty="id">
+        insert into fault_type (`index`,`flag`,`type`)
+        values (#{index,jdbcType=INTEGER},#{flag,jdbcType=INTEGER},#{type,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.power.ssm.model.Calculate">
+        update fault_type
+        set
+          `index` = #{index,jdbcType=INTEGER},
+          `flag` = #{flag,jdbcType=INTEGER},
+          `type` = #{type,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer" >
+        SET foreign_key_checks = 0;
+        delete from `fault_type` where id = #{id,jdbcType=INTEGER};
+        SET foreign_key_checks = 1;
+    </delete>
+</mapper>

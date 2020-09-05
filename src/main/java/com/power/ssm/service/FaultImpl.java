@@ -5,6 +5,7 @@ import com.power.ssm.common.Merge;
 import com.power.ssm.common.Result;
 import com.power.ssm.dao.FaultDao;
 import com.power.ssm.model.Fault;
+import com.power.ssm.model.StarQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -90,5 +91,10 @@ public class FaultImpl implements FaultService{
                 break;
         }
         return 1;
+    }
+
+    @Override
+    public List<Fault> starQuery(StarQuery query) {
+        return this.faultDao.starQuery(query);
     }
 }

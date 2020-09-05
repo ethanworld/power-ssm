@@ -20,6 +20,18 @@
         <association property="type" column="typeId" select="com.power.ssm.dao.FaultTypeDao.select"/>
     </resultMap>
 
+    <select id="starQuery" resultMap="BaseResultMap" parameterType="com.power.ssm.model.StarQuery">
+        SELECT * from fault  WHERE line in (
+        (select * from (
+        select line from fault WHERE faultDate BETWEEN '2013-01-01' AND  '2014-12-31' GROUP BY line HAVING count(*) = #{firstState}
+        union all
+        select line from fault WHERE faultDate BETWEEN '2015-01-01' AND  '2016-12-31' GROUP BY line HAVING count(*) = #{secondState}
+        union all
+        select line from fault WHERE faultDate BETWEEN '2017-01-01' AND  '2018-12-31' GROUP BY line HAVING count(*) = #{thirdState}
+        ) fault GROUP BY line HAVING count(*) = 3)) GROUP BY line;
+    </select>
+
+
     <select id="query" resultMap="BaseResultMap" parameterType="com.power.ssm.model.Fault">
         select * from `fault` where `id` > 0
         <if test="typeId != null">

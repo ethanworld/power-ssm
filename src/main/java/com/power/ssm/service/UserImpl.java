@@ -2,6 +2,7 @@ package com.power.ssm.service;
 
 import com.power.ssm.common.Result;
 import com.power.ssm.dao.UserDao;
+import com.power.ssm.model.Fault;
 import com.power.ssm.model.User;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class UserImpl implements UserService{
 
     @Override
     public int insert(User record) {
-        return 0;
+        return this.userDao.insert(record);
     }
 
     @Override
@@ -36,18 +37,20 @@ public class UserImpl implements UserService{
 
     @Override
     public int delete(User record) {
-        return 0;
+        return this.userDao.delete(record);
     }
 
     @Override
     public int update(User record) {
-        return 0;
+        return this.userDao.update(record);
     }
 
 
     @Override
     public Result<User> query (User record) {
-        return null;
+        Result<User> result = new Result<>();
+        result.setData(this.userDao.query(record));
+        return result;
     }
 
     @Override
