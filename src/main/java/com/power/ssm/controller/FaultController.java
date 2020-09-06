@@ -33,6 +33,8 @@ public class FaultController implements Controller<Fault> {
     FaultReasonService faultReasonService;
     @Resource
     FaultBlockService faultBlockService;
+    @Resource
+    FaultLPService faultLPService;
 
     @RequestMapping(value = "/feed", method = RequestMethod.GET)
     public List<Fault> starQuery(StarQuery query) {
@@ -42,6 +44,11 @@ public class FaultController implements Controller<Fault> {
     @RequestMapping(value = "/block", method = RequestMethod.GET)
     public FaultBlock block() {
         return this.faultBlockService.select(0);
+    }
+
+    @RequestMapping(value = "/lp", method = RequestMethod.GET)
+    public FaultLP lp() {
+        return this.faultLPService.select(1);
     }
 
     @RequestMapping(value = "/batch", method = RequestMethod.POST)

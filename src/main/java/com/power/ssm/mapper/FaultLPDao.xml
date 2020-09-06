@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.power.ssm.dao.FaultLPDao">
+
+    <resultMap id="BaseResultMap" type="com.power.ssm.model.FaultLP">
+        <id column="id" jdbcType="INTEGER" property="id" />
+    </resultMap>
+
+    <select id="query" resultMap="BaseResultMap" parameterType="com.power.ssm.model.FaultLP">
+        select * from `fault_location` where (`flag` is NULL) or (`flag` &lt; 2);
+    </select>
+
+
+    <select id="getId" parameterType="com.power.ssm.model.FaultLP" resultMap="BaseResultMap">
+        select * from `fault_location` where `district` = #{district, jdbcType=VARCHAR};
+<!--
+         where `province` = #{province, jdbcType=VARCHAR}
+         and `city` = #{city, jdbcType=VARCHAR}
+         and `district` = #{district, jdbcType=VARCHAR}
+-->
+    </select>
+
+    <select id="select" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from fault_lp
+        where id = #{pk, jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.power.ssm.model.FaultLP" useGeneratedKeys="true" keyProperty="id">
+        insert into fault_location (`index`,`flag`,`province`, `city`, `district`)
+        values (#{index,jdbcType=INTEGER},#{flag,jdbcType=INTEGER},#{province,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR},#{district,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.power.ssm.model.FaultLP">
+        update fault_location
+        set
+          `index` = #{index,jdbcType=INTEGER},
+          `flag` = #{flag,jdbcType=INTEGER},
+          `province` = #{province,jdbcType=VARCHAR},
+          `city` = #{city,jdbcType=VARCHAR},
+          `district` = #{district,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer" >
+        SET foreign_key_checks = 0;
+        delete from `fault_location` where id = #{id,jdbcType=INTEGER};
+        SET foreign_key_checks = 1;
+    </delete>
+</mapper>
