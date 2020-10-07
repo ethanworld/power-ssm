@@ -8,6 +8,8 @@ import lombok.Setter;
 @Getter
 public class Calculate extends Model {
 
+    private Integer lineId;
+    private Integer pid;
     private Double value;
     private String tableName;
 

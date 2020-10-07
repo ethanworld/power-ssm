@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 public class FaultLP extends Model {
 
+    private Integer lineId;
     private Double LP1;
     private Double LP2;
     private Double LP3;

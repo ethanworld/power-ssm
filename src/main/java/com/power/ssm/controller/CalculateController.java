@@ -20,9 +20,10 @@ public class CalculateController implements Controller<Calculate> {
     @Resource
     CalculateService calculateService;
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public HashMap<String, Result<Calculate>> queryAll() {
+    @RequestMapping(value = "/all/{lineId}", method = RequestMethod.GET)
+    public HashMap<String, Result<Calculate>> queryAll(@PathVariable Integer lineId) {
         Calculate record = new Calculate();
+        record.setLineId(lineId);
         HashMap<String, Result<Calculate>> map = new HashMap<>();
         record.setTableName("load_lost");
         map.put("load_lost", this.calculateService.query(record));

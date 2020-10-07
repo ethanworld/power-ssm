@@ -8,7 +8,7 @@
     </resultMap>
 
     <select id="query" resultMap="BaseResultMap" parameterType="com.power.ssm.model.Calculate">
-        select * from ${tableName} order by id asc ;
+        select * from ${tableName} where `lineId` = #{lineId} order by pid asc ;
     </select>
 
     <select id="getId" parameterType="com.power.ssm.model.Calculate" resultMap="BaseResultMap">

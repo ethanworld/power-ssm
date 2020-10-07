@@ -41,14 +41,14 @@ public class FaultController implements Controller<Fault> {
         return this.faultService.starQuery(query);
     }
 
-    @RequestMapping(value = "/block", method = RequestMethod.GET)
-    public FaultBlock block() {
-        return this.faultBlockService.select(0);
+    @RequestMapping(value = "/block/{lineId}", method = RequestMethod.GET)
+    public FaultBlock block(@PathVariable Integer lineId) {
+        return this.faultBlockService.select(lineId);
     }
 
-    @RequestMapping(value = "/lp", method = RequestMethod.GET)
-    public FaultLP lp() {
-        return this.faultLPService.select(1);
+    @RequestMapping(value = "/lp/{lineId}", method = RequestMethod.GET)
+    public FaultLP lp(@PathVariable Integer lineId) {
+        return this.faultLPService.select(lineId);
     }
 
     @RequestMapping(value = "/batch", method = RequestMethod.POST)

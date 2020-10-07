@@ -22,7 +22,7 @@
 
     <select id="select" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select * from fault_lp
-        where id = #{pk, jdbcType=INTEGER}
+        where lineId = #{lineId, jdbcType=INTEGER}
     </select>
 
     <insert id="insert" parameterType="com.power.ssm.model.FaultLP" useGeneratedKeys="true" keyProperty="id">
