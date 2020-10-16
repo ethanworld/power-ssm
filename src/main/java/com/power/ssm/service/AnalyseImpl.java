@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Service("analyseService")
@@ -37,6 +36,10 @@ public class AnalyseImpl implements AnalyseService{
         analyse.setLocationReasonList(new ArrayList<>());
         analyse.setTypeReasonList(new ArrayList<>());
 
+        Integer locationId = fault.getLocationId();
+        Integer typeId = fault.getTypeId();
+        Integer reasonId = fault.getReasonId();
+
         List<FaultLocation> locationList = this.faultLocationService.query(null).getData();
         for (FaultLocation location :locationList) {
             fault.setReasonId(null);
@@ -50,8 +53,8 @@ public class AnalyseImpl implements AnalyseService{
 
         List<FaultType> typeList = this.faultTypeService.query(null).getData();
         for (FaultType type :typeList) {
-            fault.setReasonId(null);
-            fault.setLocationId(null);
+            fault.setReasonId(reasonId);
+            fault.setLocationId(locationId);
             fault.setTypeId(type.getId());
             Analyse.Type item = new Analyse.Type();
             item.setType(type);
@@ -61,51 +64,13 @@ public class AnalyseImpl implements AnalyseService{
 
         List<FaultReason> reasonList = this.faultReasonService.query(null).getData();
         for (FaultReason reason :reasonList) {
-            fault.setTypeId(null);
-            fault.setLocationId(null);
+            fault.setTypeId(typeId);
+            fault.setLocationId(locationId);
             fault.setReasonId(reason.getId());
             Analyse.Reason item = new Analyse.Reason();
             item.setReason(reason);
             item.setCount(this.faultDao.count(fault));
             analyse.getReasonList().add(item);
-        }
-
-        for (FaultLocation location : locationList) {
-            for (FaultType type : typeList) {
-                fault.setReasonId(null);
-                fault.setTypeId(type.getId());
-                fault.setLocationId(location.getId());
-                Analyse.LocationType item = new Analyse.LocationType();
-                item.setLocation(location);
-                item.setType(type);
-                item.setCount(this.faultDao.count(fault));
-                analyse.getLocationTypeList().add(item);
-            }
-        }
-
-        for (FaultLocation location : locationList) {
-            for (FaultReason reason : reasonList) {
-                fault.setTypeId(null);
-                fault.setReasonId(reason.getId());
-                fault.setLocationId(location.getId());
-                Analyse.LocationReason item = new Analyse.LocationReason();
-                item.setLocation(location);
-                item.setReason(reason);
-                item.setCount(this.faultDao.count(fault));
-                analyse.getLocationReasonList().add(item);
-            }
-        }
-        for (FaultType type : typeList) {
-            for (FaultReason reason : reasonList) {
-                fault.setTypeId(type.getId());
-                fault.setReasonId(reason.getId());
-                fault.setLocationId(null);
-                Analyse.TypeReason item = new Analyse.TypeReason();
-                item.setType(type);
-                item.setReason(reason);
-                item.setCount(this.faultDao.count(fault));
-                analyse.getTypeReasonList().add(item);
-            }
         }
 
         return analyse;

@@ -43,6 +43,9 @@
         <if test="reasonId != null">
             and reasonId = #{reasonId}
         </if>
+        <if test="startDate != null and endDate != null">
+            and faultDate BETWEEN #{startDate} AND  #{endDate}
+        </if>
         <if test="pageFlag != null and pageFlag > 0">
             limit #{start}, #{pageSize}
         </if>
@@ -69,6 +72,9 @@
         </if>
         <if test="reasonId != null">
             and reasonId = #{reasonId}
+        </if>
+        <if test="startDate != null and endDate != null">
+            and faultDate BETWEEN #{startDate} AND  #{endDate}
         </if>
     </select>
 
